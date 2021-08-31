@@ -133,7 +133,7 @@ class Solution:
 ```
 
 理解重点：
-此题与上题非常相似，都是建立在求解数的高度的递归函数上，区别在于该题有一个最大值的比较
+此题与上题非常相似，都是建立在求解数的高度的递归函数上，区别在于该题有一个最大值的比较  
 self.res = max(self.res, left+right)
 
 
@@ -143,8 +143,15 @@ self.res = max(self.res, left+right)
 
 [Leetcode](https://leetcode.com/problems/invert-binary-tree/description/) / [力扣](https://leetcode-cn.com/problems/invert-binary-tree/description/)
 
-```java
-
+```python
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        left = self.invertTree(root.left)
+        right = self.invertTree(root.right)
+        root.left, root.right = right, left
+        return root
 ```
 
 ### 5. 归并两棵树
