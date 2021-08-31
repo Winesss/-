@@ -96,7 +96,6 @@ left = dps(root.left)
 right = dps(root.right)
 
 2. 递归的思想是建立在求解高度的基础上的，在求高度的递归函数上中，多了一个条件判断  
-
 if left == -1 or right == -1 or abs(left-right) > 1:
     return -1
 
