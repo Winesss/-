@@ -75,9 +75,28 @@ int maxDepth(TreeNode* root) {
 
 平衡树左右子树高度差都小于等于 1
 
-```java
-
+```python
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def dps(root):
+            if not root:
+                return 0
+            left = dps(root.left)
+            right = dps(root.right)
+            if left == -1 or right == -1 or abs(left-right) > 1:
+                return -1
+            else:
+                return max(left, right)+1
+        return dps(root) >= 0
 ```
+
+理解重点：
+1. 自底向上减少时间复杂度
+left = dps(root.left)
+right = dps(root.right)
+2. 递归的思想是建立在求解高度的基础上的，在求高度的递归函数上中，多了一个条件判断
+if left == -1 or right == -1 or abs(left-right) > 1:
+    return -1
 
 ### 3. 两节点的最长路径
 
@@ -97,9 +116,25 @@ Input:
 Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 ```
 
-```java
-
+```python
+class Solution:
+    res =0
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        def dfs(root):
+            if not root:
+                return 0
+            left = dfs(root.left)
+            right = dfs(root.right)
+            self.res = max(self.res, left+right)
+            return max(left, right)+1
+        dfs(root)
+        return self.res
 ```
+
+理解重点：
+此题与上题非常相似，都是建立在求解数的高度的递归函数上，区别在于该题有一个最大值的比较
+self.res = max(self.res, left+right)
+
 
 ### 4. 翻转树
 
